@@ -7,14 +7,9 @@ from restasite.models import MenuItem
 
 
 def index(request):
-    menu_brk = MenuItem.objects.filter(type__exact='BRK').order_by('?')[:6]
-    menu_lun = MenuItem.objects.filter(type__exact='LUN').order_by('?')[:6]
-    menu_din = MenuItem.objects.filter(type__exact='DIN').order_by('?')[:6]
-    context = {'menu_brk': menu_brk, 'menu_lun': menu_lun, 'menu_din': menu_din}
     return render(
         request,
-        'index.html',
-        context=context
+        'index.html'
     )
 
 
@@ -47,10 +42,10 @@ def send_message(name, email, message):
     html = get_template('message.html')
     context = {'name': name, 'email': email, 'message': message}
     subject = 'Сообщение от пользователя'
-    from_email = 'from@example.com'
+    from_email = 'vasyusha83@gmail.com.com'
     text_content = text.render(context)
     html_content = html.render(context)
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email, ['manager@example.com'])
+    msg = EmailMultiAlternatives(subject, text_content, from_email, ['vasyusha83@gmail.com.com'])
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
